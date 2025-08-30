@@ -31,6 +31,7 @@ SOD_CONFLICTS = [
     ("GlobalAdmin", "BillingAdmin"),
     ("UserAdmin", "SecurityAdmin"),
     ("Developer", "DBA_Prod"),
+    ("ExchangeAdmin", "SharePointAdmin"),
 ]
 
 DORMANT_DAYS = 90
