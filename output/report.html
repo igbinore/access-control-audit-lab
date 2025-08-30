@@ -1,0 +1,162 @@
+<meta charset="utf-8"><h1>Access Control Audit Report</h1>
+<p>Generated: 2025-08-29 17:19:20Z</p>
+<h1>Executive Summary</h1>
+<ul>
+<li>Scope: User &amp; role access review (privileged roles, MFA, SoD, dormancy, inactive).</li>
+<li>Method: Automated checks using a Python script; results in CSV + Markdown.</li>
+<li>Key Risks: <add 2–3 from findings.csv, e.g., "Privileged roles without MFA", "SoD conflicts">.</li>
+<li>Impact: Fraud/unauthorized changes; increased breach exposure.</li>
+<li>Top Actions: Enforce MFA on admins; fix SoD conflicts; disable/recertify dormant/inactive; remove roles from inactive.</li>
+</ul>
+<p>Total accounts reviewed: 12</p>
+<h2>Risk Overview</h2>
+<ul>
+<li><strong>High</strong>: 7</li>
+<li><strong>Compliant</strong>: 3</li>
+<li><strong>Medium</strong>: 2</li>
+</ul>
+<h2>High-Risk Findings (samples)</h2>
+<ul>
+<li>alice: Has privileged role(s) without MFA: GlobalAdmin, SecurityAdmin</li>
+<li>carol: SoD conflict: UserAdmin + SecurityAdmin</li>
+<li>dave: SoD conflict: Developer + DBA_Prod</li>
+<li>grace: Has privileged role(s) without MFA: ExchangeAdmin, SharePointAdmin | Dormant account: last login 200 days ago</li>
+<li>heidi: Has privileged role(s) without MFA: HelpdeskAdmin</li>
+</ul>
+<h2>Full Findings Table (Top 20)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">username</th>
+<th style="text-align: left;">account_type</th>
+<th style="text-align: left;">roles</th>
+<th style="text-align: left;">mfa_enabled</th>
+<th style="text-align: left;">last_login</th>
+<th style="text-align: left;">active</th>
+<th style="text-align: left;">risk_level</th>
+<th style="text-align: left;">issues</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">alice</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">GlobalAdmin;SecurityAdmin</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">2025-08-24</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Has privileged role(s) without MFA: GlobalAdmin, SecurityAdmin</td>
+</tr>
+<tr>
+<td style="text-align: left;">bob</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">BillingAdmin;BillingReader</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-08-17</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">Compliant</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">carol</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">UserAdmin;SecurityAdmin</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-08-27</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">SoD conflict: UserAdmin + SecurityAdmin</td>
+</tr>
+<tr>
+<td style="text-align: left;">dave</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">Developer;DBA_Prod</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-07-20</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">SoD conflict: Developer + DBA_Prod</td>
+</tr>
+<tr>
+<td style="text-align: left;">eve</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">ReadOnly</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-04-21</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Dormant account: last login 130 days ago</td>
+</tr>
+<tr>
+<td style="text-align: left;">frank</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">HRManager</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-08-28</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">Compliant</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">grace</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">ExchangeAdmin;SharePointAdmin</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">2025-02-10</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Has privileged role(s) without MFA: ExchangeAdmin, SharePointAdmin</td>
+</tr>
+<tr>
+<td style="text-align: left;">heidi</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">HelpdeskAdmin</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">2025-08-21</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Has privileged role(s) without MFA: HelpdeskAdmin</td>
+</tr>
+<tr>
+<td style="text-align: left;">ivan</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">ReadOnly</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2024-07-25</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">Medium</td>
+<td style="text-align: left;">Inactive account still has roles assigned</td>
+</tr>
+<tr>
+<td style="text-align: left;">joy</td>
+<td style="text-align: left;">User</td>
+<td style="text-align: left;">SalesRep</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">2025-08-22</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">Compliant</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">svc-backup</td>
+<td style="text-align: left;">Service</td>
+<td style="text-align: left;">SecurityAdmin</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">2025-06-30</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Has privileged role(s) without MFA: SecurityAdmin</td>
+</tr>
+<tr>
+<td style="text-align: left;">shared-helpdesk</td>
+<td style="text-align: left;">Shared</td>
+<td style="text-align: left;">HelpdeskAdmin</td>
+<td style="text-align: left;">False</td>
+<td style="text-align: left;">2025-08-25</td>
+<td style="text-align: left;">True</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Has privileged role(s) without MFA: HelpdeskAdmin</td>
+</tr>
+</tbody>
+</table>

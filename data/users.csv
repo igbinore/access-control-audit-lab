@@ -1,0 +1,13 @@
+username,display_name,email,department,roles,mfa_enabled,last_login,account_type,active
+alice,Alice Chen,alice@example.com,IT,GlobalAdmin;SecurityAdmin,False,2025-08-24,User,True
+bob,Bob Smith,bob@example.com,Finance,BillingAdmin;BillingReader,True,2025-08-17,User,True
+carol,Carol Jones,carol@example.com,IT,UserAdmin;SecurityAdmin,True,2025-08-27,User,True
+dave,Dave Patel,dave@example.com,Engineering,Developer;DBA_Prod,True,2025-07-20,User,True
+eve,Eve Miller,eve@example.com,IT,ReadOnly,True,2025-04-21,User,True
+frank,Frank Lee,frank@example.com,HR,HRManager,True,2025-08-28,User,True
+grace,Grace Kim,grace@example.com,IT,ExchangeAdmin;SharePointAdmin,False,2025-02-10,User,True
+heidi,Heidi Gomez,heidi@example.com,Support,HelpdeskAdmin,False,2025-08-21,User,True
+ivan,Ivan Petrov,ivan@example.com,IT,ReadOnly,True,2024-07-25,User,False
+joy,Joy Umeh,joy@example.com,Sales,SalesRep,True,2025-08-22,User,True
+svc-backup,Service Backup,svc-backup@example.com,IT,SecurityAdmin,False,2025-06-30,Service,True
+shared-helpdesk,Shared Helpdesk,shared-helpdesk@example.com,Support,HelpdeskAdmin,False,2025-08-25,Shared,True

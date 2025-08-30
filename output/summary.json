@@ -1,0 +1,30 @@
+{
+  "total_accounts": 12,
+  "by_risk": {
+    "High": 7,
+    "Compliant": 3,
+    "Medium": 2
+  },
+  "high_risk_examples": [
+    {
+      "username": "alice",
+      "issues": "Has privileged role(s) without MFA: GlobalAdmin, SecurityAdmin"
+    },
+    {
+      "username": "carol",
+      "issues": "SoD conflict: UserAdmin + SecurityAdmin"
+    },
+    {
+      "username": "dave",
+      "issues": "SoD conflict: Developer + DBA_Prod"
+    },
+    {
+      "username": "grace",
+      "issues": "Has privileged role(s) without MFA: ExchangeAdmin, SharePointAdmin | Dormant account: last login 200 days ago"
+    },
+    {
+      "username": "heidi",
+      "issues": "Has privileged role(s) without MFA: HelpdeskAdmin"
+    }
+  ]
+}

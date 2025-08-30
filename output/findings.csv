@@ -1,0 +1,13 @@
+username,email,account_type,roles,mfa_enabled,last_login,active,issues,risk_level
+alice,alice@example.com,User,GlobalAdmin;SecurityAdmin,False,2025-08-24,True,"Has privileged role(s) without MFA: GlobalAdmin, SecurityAdmin",High
+bob,bob@example.com,User,BillingAdmin;BillingReader,True,2025-08-17,True,,Compliant
+carol,carol@example.com,User,UserAdmin;SecurityAdmin,True,2025-08-27,True,SoD conflict: UserAdmin + SecurityAdmin,High
+dave,dave@example.com,User,Developer;DBA_Prod,True,2025-07-20,True,SoD conflict: Developer + DBA_Prod,High
+eve,eve@example.com,User,ReadOnly,True,2025-04-21,True,Dormant account: last login 130 days ago,Medium
+frank,frank@example.com,User,HRManager,True,2025-08-28,True,,Compliant
+grace,grace@example.com,User,ExchangeAdmin;SharePointAdmin,False,2025-02-10,True,"Has privileged role(s) without MFA: ExchangeAdmin, SharePointAdmin | Dormant account: last login 200 days ago",High
+heidi,heidi@example.com,User,HelpdeskAdmin,False,2025-08-21,True,Has privileged role(s) without MFA: HelpdeskAdmin,High
+ivan,ivan@example.com,User,ReadOnly,True,2024-07-25,False,Inactive account still has roles assigned,Medium
+joy,joy@example.com,User,SalesRep,True,2025-08-22,True,,Compliant
+svc-backup,svc-backup@example.com,Service,SecurityAdmin,False,2025-06-30,True,Has privileged role(s) without MFA: SecurityAdmin | Privileged non-person account (Service),High
+shared-helpdesk,shared-helpdesk@example.com,Shared,HelpdeskAdmin,False,2025-08-25,True,Has privileged role(s) without MFA: HelpdeskAdmin | Privileged non-person account (Shared),High
