@@ -1,62 +1,70 @@
 # Access Control Audit — Starter Lab
 
-This lab helps you practice a **user & role access review** like an IT auditor.
+Hands-on **IT audit** lab that automates a user & role access review. It detects:
 
 ## What you'll do
-1. Load a small user list.
-2. Check for **Segregation of Duties (SoD)** conflicts (e.g., GlobalAdmin + BillingAdmin).
-3. Find **privileged accounts** without **MFA**.
-4. Spot **dormant accounts** (no login in 90+ days).
-5. Flag **service/shared** accounts holding privileged roles.
-6. Export an **audit report** and a **findings CSV** you can share.
+Hands-on **IT audit** lab that automates a user & role access review. It detects:
+- **Segregation of Duties (SoD) conflicts** (e.g., `GlobalAdmin + BillingAdmin`)
+- **Privileged accounts without MFA**
+- **Dormant** (>90 days) or **inactive** users with roles
+- **Service/Shared** accounts holding privileged roles
 
-> Everything is simple and self-contained. You can replace the sample users with your own exports later.
-
----
-
-## Folder structure
-```
-access_control_audit_lab/
-├── data/
-│   └── users.csv            # sample data (you can edit)
-├── scripts/
-│   └── audit_access.py      # run this script
-└── output/                  # reports are generated here
-```
-
-## Step-by-step (simple)
-1. **Download** this folder (use the ZIP below).
-2. If you want, open `data/users.csv` and change/add users.
-   - `roles` are separated by semicolons like `GlobalAdmin;SecurityAdmin`
-   - `mfa_enabled` is `True` or `False`
-   - `account_type` can be `User`, `Service`, or `Shared`
-3. **Run the audit** (from the folder root):
-   ```bash
-   python3 scripts/audit_access.py
-   ```
-4. **Open results** in `output/`:
-   - `findings.csv` — each account with issues and risk
-   - `summary.json` — quick totals and examples
-   - `report.md` — human‑readable summary for your README or PDF
-
-## What the script checks
-- **SoD conflicts** (bad role pairs):  
-  - `GlobalAdmin` + `BillingAdmin`  
-  - `UserAdmin` + `SecurityAdmin`  
-  - `Developer` + `DBA_Prod`
-- **Privileged roles without MFA** (e.g., `GlobalAdmin`, `SecurityAdmin`, `DBA_Prod`)
-- **Dormant accounts** (>90 days since last login)
-- **Privileged non‑person accounts** (Service/Shared with admin roles)
-- **Inactive accounts with roles** (should be removed)
-
-## How to explain this on LinkedIn
-> *“Built an Access Control Audit lab that detects SoD conflicts, flags privileged accounts without MFA, and identifies dormant/shared/service accounts. Produced a findings CSV and a clean Markdown report—mimicking a real audit deliverable.”*
+**Deliverables:** `output/findings.csv`, `output/report.md` (optional PDF), `output/summary.json`.  
+See also: [`controls_map.md`](./controls_map.md) for ISO/NIST/COBIT mappings.
 
 ---
 
-## Next steps (optional)
-- Replace the sample `users.csv` with a real export from Entra/AD/Okta (remove secrets).
-- Add more SoD pairs to the script (easy Python list).
-- Pipe `report.md` into a PDF for portfolio uploads.
+## Run it (Windows Command Prompt)
+```bat
+cd /d C:\Users\<YOU>\Downloads\access-control-audit-lab
+python scripts\audit_access.py
+:: or
+py -3 scripts\audit_access.py
+Open results
 
-Good luck! 🚀
+bat
+Copy code
+start output\findings.csv
+notepad output\report.md
+notepad output\summary.json
+Want a PDF? Open output\report.md and print to Microsoft Print to PDF (save as output\Access_Control_Audit_Report.pdf).
+
+Controls tested
+SoD conflicts: GlobalAdmin + BillingAdmin, UserAdmin + SecurityAdmin, Developer + DBA_Prod
+
+MFA on privileged roles: required for admin roles (Global/Security/Exchange/SharePoint, DBA_Prod, etc.)
+
+Dormancy / inactivity: last login > 90 days, or inactive user still has roles
+
+Non-person privileged accounts: Service/Shared accounts should not hold admin roles
+
+Results (example from my run)
+yaml
+Copy code
+Total accounts reviewed: <paste from output/summary.json>
+Risk levels: {"High": x, "Medium": y, "Compliant": z}
+Sample high-risk:
+- alice: SoD conflict (GlobalAdmin + BillingAdmin)
+- grace: Has privileged role(s) without MFA: SecurityAdmin
+- shared-helpdesk: Privileged non-person account (Shared)
+Make it your own
+Replace data/users.csv with a sanitized Entra/AD/Okta export (no real PII).
+
+Add/remove SoD pairs at the top of scripts/audit_access.py.
+
+Map findings to frameworks in controls_map.md.
+
+Repo structure
+pgsql
+Copy code
+access-control-audit-lab/
+├─ data/
+│  └─ users.csv
+├─ scripts/
+│  └─ audit_access.py
+└─ output/
+   ├─ findings.csv
+   ├─ report.md  (and/or Access_Control_Audit_Report.pdf)
+   └─ summary.json
+Disclaimer
+Sample data only—sanitize any real exports before sharing.
